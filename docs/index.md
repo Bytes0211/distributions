@@ -1,6 +1,9 @@
-# Distributions 
+# Distributions
+## What Is A Probability Distribution?
+A probability distribution is a mathematical function that provides the probabilities of occurrence of different possible outcomes in an experiment. In simpler terms, it is a way to describe the likelihood of different outcomes in a given scenario.
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+A probability distribution is a statistical function that describes the likelihood of obtaining all possible values that a random variable can take. In other words, the values of the variable vary based on the underlying probability distribution. Typically, analysts display probability distributions in graphs and tables. I will provide the most common equations used to calculate probability distributions.
+
 
 ## Commands
 
