@@ -80,7 +80,8 @@ There are FOUR possible values for X:<br>
 * Probability of getting 1 Heads (TTH, THT, HTT): $P(X = 3) = \dfrac{3}{8} = 0.3755$
 * Probability of getting 2 Heads (HTT, HTH, THH): $P(X = 3) = \dfrac{3}{8} = 0.375$
 * Probability of getting 3 Heads (HHH): $P(X = 3) = \dfrac{1}{8} = 0.125$
-<br>
-<b>Show The Distribution Of X</b><br>
+<br><br>
+
+b>Plot The Distribution Of X</b><br>
 
 ![dice roll](dice_roll1.png)
