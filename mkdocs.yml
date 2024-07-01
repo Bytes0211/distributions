@@ -1,5 +1,62 @@
-site_name: My Docs
-nav:
-  - Home: index.md
-  - About: about.md  
-theme: readthedocs
+site_name: Probability Distributions 
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight  
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en    
+  palette:
+    - scheme: default 
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to Dark Mode
+      primary: teal
+      accent: purple
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to Light Mode
+      primary: blue
+      accent: indigo  
+  font:
+    text: Roboto
+    code: Roboto Mono 
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/Bytes0211
+    - icon: fontawesome/brands/twitter      
+      link: https://twitter.com/SXCotton
+
+# markdown extensions added to allow for python code blocks to be executed        
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - mdx_math   
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
+
+copyright: | 
+  &copy 2024 <a href="https://github.com/Bytes0211" target="_blank" rel="noopener">Steve Cotton</a>        
