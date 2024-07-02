@@ -1,7 +1,7 @@
 
 import numpy as np
 
-from bokeh.plotting import curdoc, save, output_file
+from bokeh.plotting import curdoc
 from bokeh.io import export_png
 from bokeh.models import ColumnDataSource, Grid, LinearAxis, Plot, VBar, TeX
 
@@ -37,18 +37,17 @@ plot.add_layout(Grid(dimension=1, ticker=yaxis.ticker))
 plot.yaxis.ticker = [0, 0.5, 1, 1.5, 2, 2.5, 3]
 plot.yaxis.major_label_overrides = {
     0: TeX(r"0"),
-    0.5: TeX(r"0.0625"),
-    1: TeX(r"0.125"),
-    1.5: TeX(r"0.1875"),
-    2: TeX(r"0.250"),
-    2.5: TeX("0.3125"),
-    3: TeX(r"0.375"),
+    0.5: TeX(r"\dfrac{1}{8}"),
+    1: TeX(r"\dfrac{1}{4}"),
+    1.5: TeX(r"\dfrac{1}{8}"),
+    1.5: TeX(r""),
+    2: TeX(r"\dfrac{1}{4}"),
+    2.5: TeX(r""),
+    3: TeX(r"\dfrac{3}{8}"),
 }
 
 plot.yaxis.axis_label = 'Probabilities'
 plot.xaxis.axis_label = 'Coin Tosses'
 
 curdoc().add_root(plot)
-# export_png(plot, filename="../docs/dice_roll1.png")
-output_file("../docs/bokeh/dice_roll1.html")
-save(plot)
+export_png(plot, filename="../docs/dice_roll1.png")
