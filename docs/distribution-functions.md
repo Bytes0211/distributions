@@ -54,7 +54,7 @@ CDF have the following properties:
 <br><br>
 This conveyed graphically below: 
 
-<iframe src="/bokeh/cumulative-dice-roll1.html"
+<iframe src="https://bytes0211.github.io/distributions/bokeh/cumulative-dice-roll1.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -78,7 +78,7 @@ or 0.24, or  0.24323 lbs. The probability that a burger weighs exactly 0.25 lbs 
 Below is a graphical representative of PMF and CDF side by side. Again for the PMF **each** roll of the dice has a 1/6 probability<br> While the CDF expresses **multiple** probabilities which are "cumulative". 
 
 
-<iframe src="/bokeh/dice-roll-pmf-cdf.html"
+<iframe src="https://bytes0211.github.io/distributions/bokeh/dice-roll-pmf-cdf.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -94,7 +94,7 @@ The probability of rolling a 1 on a six sided dice is $\frac{1}{6} $$ or .167$<b
 * The probability of rolling a 4 is $\frac{1}{6}$ or $16.7\%$ (PDF)
 * The probability of rolling a 1, 2, 3, or 4 is $\frac{4}{6}$ or $66.8 %$ (CDF)
 
-<iframe src="/bokeh/dice-roll-pmf-cdf-ex.html"
+<iframe src="https://bytes0211.github.io/distributions/bokeh/dice-roll-pmf-cdf-ex.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -121,7 +121,7 @@ That is because there are no values for 3 or 4, so there is no cumulative effect
 </span>
 <p />
 
-<iframe src="/bokeh/dice-roll-pmf-cdf-unfair.html"
+<iframe src="https://bytes0211.github.io/distributions/bokeh/dice-roll-pmf-cdf-unfair.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
