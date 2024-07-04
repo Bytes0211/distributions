@@ -14,7 +14,7 @@ $P(x < 1) : 0 \\ \quad \\ P(x = 1) : \dfrac{1}{6} \\ \quad \\ P(x = 2) : \dfrac{
 
 Its important to note that x is a discrete variable in every instance. since x takes on only integer values.
 
-<iframe src="/bokeh/dice_roll_function1.html"
+<iframe src="/bokeh/dice-roll-function1.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -54,7 +54,7 @@ CDF have the following properties:
 <br><br>
 This conveyed graphically below: 
 
-<iframe src="/bokeh/cumulative_dice_roll1.html"
+<iframe src="/bokeh/cumulative-dice-roll1.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -78,7 +78,7 @@ or 0.24, or  0.24323 lbs. The probability that a burger weighs exactly 0.25 lbs 
 Below is a graphical representative of PMF and CDF side by side. Again for the PMF **each** roll of the dice has a 1/6 probability<br> While the CDF expresses **multiple** probabilities which are "cumulative". 
 
 
-<iframe src="/bokeh/dice_roll_pmf_cdf.html"
+<iframe src="/bokeh/dice-roll-pmf-cdf.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -94,7 +94,7 @@ The probability of rolling a 1 on a six sided dice is $\frac{1}{6} $$ or .167$<b
 * The probability of rolling a 4 is $\frac{1}{6}$ or $16.7\%$ (PDF)
 * The probability of rolling a 1, 2, 3, or 4 is $\frac{4}{6}$ or $66.8 %$ (CDF)
 
-<iframe src="/bokeh/dice_roll_pmf_cdf_ex.html"
+<iframe src="/bokeh/dice-roll-pmf-cdf-ex.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -121,7 +121,7 @@ That is because there are no values for 3 or 4, so there is no cumulative effect
 </span>
 <p />
 
-<iframe src="/bokeh/dice_roll_pmf_cdf_unfair.html"
+<iframe src="/bokeh/dice-roll-pmf-cdf-unfair.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -129,4 +129,16 @@ That is because there are no values for 3 or 4, so there is no cumulative effect
      seamless="seamless"
      frameborder="0">
  </iframe>
-<
+<br>
+On the left you the discreet probability with a rigged die that doesn't allow the roll of 3 or 4<br>
+$P(X 1, 2, 5, 6) = \frac{1}{4}$ or $ 25.0 \%$
+<br>
+On the right you have the cumulative probability of rolling a 1, 2, 5 or 6 which is $\frac{4}{6}$
+or $66.8 \%$<br>
+<br>
+$P(X \leq 4) = P(x = 1) + P(x = 2) + P(x = 3) + P(x = 4)$
+<br><br>
+Note that for the cumulative (CDF) the probability of getting 2 or less is the same for getting 3, 4 or less<br>
+That is because there are no values for 3 or 4, so there is no cumulative effect<br>
+:
+## The Probability Density Function (PDF)

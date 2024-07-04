@@ -8,6 +8,5 @@ A comprehensive look at probability distributions components, applications in Py
 
 ## Distribution Functions
 
-- [Distribution Functions](distribution_functions.md) and Their Properties
+- [Distribution Functions](distribution-functions.md) and Their Properties
 
--
