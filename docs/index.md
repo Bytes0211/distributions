@@ -3,4 +3,11 @@ A comprehensive look at probability distributions components, applications in Py
 
 ## Introduction
 
-- An [introduction](introduction.md) to probability distributions
+- An Introduction to [Probability Distributions](introduction.md)
+
+
+## Distribution Functions
+
+- [Distribution Functions](distribution_functions.md) and Their Properties
+
+-
