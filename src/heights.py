@@ -2,10 +2,8 @@
 
 
 import numpy as np
-from bokeh.layouts import column
 from bokeh.models import Div, TeX
 from bokeh.plotting import figure, save, output_file, curdoc
-from bokeh.layouts import column 
 
 
 curdoc().theme = 'dark_minimal'
@@ -13,7 +11,7 @@ curdoc().theme = 'dark_minimal'
 p = figure(width=60,
            height=400,
            toolbar_location=None,
-           title="Heights - Probability Density Function of a Normal Distribution\n")
+           title="Heights - PDF of a Normal Distribution\n")
 
 n = 1000
 rng = np.random.default_rng(825914)
@@ -76,5 +74,5 @@ $$
 
           """)
 output_file('../docs/bokeh/heights-pdf.html')
-save(column(p, div))
+save(p)
 
