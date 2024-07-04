@@ -14,7 +14,7 @@ $P(x < 1) : 0 \\ \quad \\ P(x = 1) : \dfrac{1}{6} \\ \quad \\ P(x = 2) : \dfrac{
 
 Its important to note that x is a discrete variable in every instance. since x takes on only integer values.
 
-<iframe src="/bokeh/dice-roll-function1.html"
+<iframe src="bokeh/dice-roll-function1.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
