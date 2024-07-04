@@ -43,7 +43,6 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - admonition
-  - mdx_math   
   - pymdownx.arithmatex:
       generic: true
   - footnotes
