@@ -1,0 +1,18 @@
+# heights.py
+
+import numpy as np
+import pandas as pd
+
+n = 1000
+rng = np.random.default_rng(246810)
+height = rng.normal(loc=165, scale=12, size=(n))
+df_height = pd.Series(height)
+
+data = '- Height Statistics:<br><br>'
+data = data + f'- $\\text{{ count: {df_height.count()}}}$<br><br>\\' 
+data = data + f'- $\\text{{ standard deviation: {df_height.std(): .2f}}}$<br><br>' 
+data = data + f'- $\\text{{ min: {df_height.min(): .2f} }}$<br><br>'
+data = data + f'- $\\text{{ max: {df_height.max(): .2f} }}$<br><br>'
+print(data)
+
+

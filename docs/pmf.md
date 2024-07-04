@@ -1,7 +1,4 @@
-# Distribution Functions
-An introduction to the concepts of probability mass functions (PMFs) and probability density functions (PDFs). These functions are used to describe the probability of a random variable taking on a particular value or falling within a particular range of values. In this article, we will explore the concept of distribution functions, which provide a more general way to describe the probability distribution of a random variable.
-
-## The Probability Mass Function (PMF)
+# The PMF
 The probability mass function (PMF) is a function that describes the probability of a discrete random variable taking on a particular value. For example, if we have a random variable X that represents the outcome of rolling a fair six-sided die, the PMF of X would assign a probability to each possible outcome (1, 2, 3, 4, 5, or 6).
 
 One roll of a dice where x denotes the number that the dice lands on, then the PDF for the outcome<br/>
@@ -22,15 +19,13 @@ Its important to note that x is a discrete variable in every instance. since x t
      seamless="seamless"
      frameborder="0">
  </iframe>
-<br>
 
-PMF<br>
+<br>
 The probability of rolling a 1 on a six sided dice is 1/6 or .167
-
 <br>
 
-### The PMF With The Cumulative Distribution Function (CDF)
-Cumulative probability measures the odds(probability) of two, three or more events happening<br>
+## The PMF And The CDF 
+Cumulative Probability Function (CDF) measures the odds(probability) of two, three or more events happening<br>
 A CDF tells us the probability that a random variable takes on a value less than or equal to x. <br>
 <br>
 Example:<br/>
@@ -68,13 +63,9 @@ The probability of rolling a 1 on a six sided dice is $\frac{1}{6}$ or .167
 <br>
 Note that I also change the range to 0 - 1
 
-### The Issue With Using PMFs For Continuous Random Variables
-You cannot use continuous random values with PDFs directly, since the probability that x takeing on any exact value is zero.<br/>
-For example, we want to know the probability that a burger from your favorite burger joint weigh:ws exactly a quarter of a pound (0.25 lbs)<br/>
-Since weight is a continuous variable, it can take on an infinite number of values. A burger might actually weigh 0.250001 lbs,<br/>
-or 0.24, or  0.24323 lbs. The probability that a burger weighs exactly 0.25 lbs is essentially zero.<br/>
+## PMF Properties 
+The PMF can only be used with discrete values. You cannot use continuous random values with PDFs directly, since the probability that x taking on any exact value iszero. For example, we want to know the probability that a burger from your favorite burger joint weigh:ws exactly a quarter of a pound (0.25 lbs) Since weight is a continuous variable, it can take on an infinite number of values. A burger may actually weigh 0.250001 lbs, or 0.24 lbs., or  0.24323 lbs. The probability that a burger weighs exactly 0.25 lbs is essentially zero.
 
-### The Relationship Between PMF and CDF For Discrete Random Variables
 Below is a graphical representative of PMF and CDF side by side. Again for the PMF **each** roll of the dice has a 1/6 probability<br> While the CDF expresses **multiple** probabilities which are "cumulative". 
 
 
@@ -89,7 +80,7 @@ Below is a graphical representative of PMF and CDF side by side. Again for the P
 
 The probability of rolling a 1 on a six sided dice is $\frac{1}{6} $$ or .167$<br>
 
-#### Exmaple: PMF and CDF for a six sided dice and the probability of rolling a 4
+## PMF and CDF Exmaple
 
 * The probability of rolling a 4 is $\frac{1}{6}$ or $16.7\%$ (PDF)
 * The probability of rolling a 1, 2, 3, or 4 is $\frac{4}{6}$ or $66.8 %$ (CDF)
@@ -141,4 +132,13 @@ $P(X \leq 4) = P(x = 1) + P(x = 2) + P(x = 3) + P(x = 4)$
 Note that for the cumulative (CDF) the probability of getting 2 or less is the same for getting 3, 4 or less<br>
 That is because there are no values for 3 or 4, so there is no cumulative effect<br>
 :
-## The Probability Density Function (PDF)
+## PMF Applications
+Probability Mass Functions (PMFs) are used in various fields and applications to describe the distribution of discrete random variables. Here is a list of a few of the many applications of PMFs:
+
+- <b>Statistics and Data Analysis</b>: PMFs are used to summarize and visualize the distribution of discrete data, helping in understanding the likelihood of different outcomes.
+
+- <b>Quality Control and Manufacturing</b>: PMFs help in assessing the probability of defects in batches of products, enabling companies to maintain quality standards.
+
+- <b>Finance and Risk Management</b>: PMFs are used to model the probability of discrete outcomes in financial scenarios, such as the number of defaults on loans or the occurrence of specific market conditions.
+
+- <b>Health Sciences</b>: PMFs model the distribution of discrete outcomes in medical research and public health, such as the number of cases of a disease or the number of patients responding to a treatment.
