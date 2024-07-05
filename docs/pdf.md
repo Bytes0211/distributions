@@ -1,47 +1,32 @@
-# The PDF
-The Probability Density Function (PDF) is a function that describes the likelihood of a random variable taking on a particular value. The PDF is used to specify theprobability of the random variable falling within a particular range of values, as opposed to taking on any one value. This probability is given by the integral of the variable’s PDF over that range — that is, it is given by the area under the density function but above the horizontal axis and between the lowest and greatest values of the range.
+# Probability Density Function
+The Probability DensiPy Function (PDF) is a function that describes the likelihood of a continuous random variable taking on a particular value. The PDF is used with continuous random variables, which can take on any value within a continuous range. Key points about the PDF include:
 
-Some key properties of the PDF are:
+- The PDF itself does not give probabilities directly. Instead, it describes the relative likelihood of the random variable being near a particular value.
+- The probability of the random variable falling within a particular range is given by the integral of the PDF over that range.
+- The area under the entire PDF curve equals 1, representing the total probability of all possible outcomes.
 
-- The PDF itself does not give probabilities directly. Instead, it describes the relative likelihood of the random variable taking on a particular value.
+The PDF is crucial for understanding the distribution of continuous data and for calculating probabilities over intervals for continuous random variables.
 
-- The probability of the random variable falling within a particular range of values is given by the integral of the PDF over that range.
+## Probability Density Components
+* **observation** - a data point in the sample
+* **probability** - the likelihood of an outcome of an observation 
+* **probability density** - the relationship between the observation and its probability 
+* **probability distribution** - the overall shape of all the probability densities from the sample
+* **Probability Density Function (PDF)** - performs calculations of probabilities for a specific outcomes of a random variable
 
-- The PDF is nonnegative everywhere, and its integral over the entire space is equal to 1, where 1 represents the entire space of possible values of the random variable.
+## PDF Estimation
+Given a random variable, we are interested in the density of its probabilities. For example, given a random sample of a variable, we might want to know things like the shape of the probability distribution, the most likely value, the spread of values, and other properties.<br><br>
+Knowing the probability distribution for a random variable can help to calculate moments of the distribution, like the mean and variance, but can also be useful for other more general considerations, like determining whether an observation is unlikely or very unlikely and might be an outlier or anomaly.<br><br>
+The problem is, we may not know the probability distribution for a random variable. We rarely do know the distribution because we don’t have access to all possible outcomes for a random variable. In fact, all we have access to is a sample of observations. As such, we must select a probability distribution<br><br>
+This problem is referred to as <b>probability density estimation, or simply density estimation</b>, as we are using the observations in a random sample to estimate the general density of probabilities beyond just the sample of data we have available.<br><br>
 
-The formula for the PDF is given by the derivative of the cumulative distribution function (CDF) with respect to the random variable. The CDF is the function that maps values of the random variable to their cumulative probability. The PDF is the derivative of the CDF, which means that the PDF is the rate of change of the CDF.
-
-$PDF(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left[-\frac{1}{2} \left(\frac{x-\overline{x}}{\sigma}\right)^2 \right]$
-
-where:
-
-- x is the value of the random variable
-
-- $\overline{x}$ is the mean of the random variable
-
-- $\sigma$ is the standard deviation of the random variable
-
-## Continuous Random Variables 
-Continuous variables can take on infinite number of possible values such as the height of a person, weight of an animal<br>
-time required to run a mile. <br/>
-<br>
-Examples:
-
-- a person's height can be 157.48 cm or 82.55 cm
- 
-- An animals can be be 22.4 Kg, 23.138 kg
-
-A popular way of describing PDF with continuous variables is using weight or height. Here I will sample height of women to to describe PDF
-
-- Height Statistics:<br><br>- $\text{ count: 1000}$<br><br>\- $\text{ standard deviation:  12.24}$<br><br>- $\text{ min:  131.36 }$<br><br>- $\text{ max:  206.14 }$<br>
-
-<iframe src="https://bytes0211.github.io/distributions/bokeh/heights-pdf.html"
+## Density Visualization
+<iframe src="https://bytes0211.github.io/distributions/bokeh/density1.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
      scrolling="no"
      seamless="seamless"
      frameborder="0">
- </iframe>
-<br>
+</iframe>
 
