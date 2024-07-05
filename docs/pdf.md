@@ -35,7 +35,7 @@ A popular way of describing PDF with continuous variables is using weight or hei
 
 - Height Statistics:<br><br>- $\text{ count: 1000}$<br><br>\- $\text{ standard deviation:  12.24}$<br><br>- $\text{ min:  131.36 }$<br><br>- $\text{ max:  206.14 }$<br>
 
-<iframe src="https://bytes0211.github.io/distributions/docs/bokeh/heights-pdf.html"
+<iframe src="https://bytes0211.github.io/distributions/bokeh/heights-pdf.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
