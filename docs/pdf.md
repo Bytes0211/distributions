@@ -29,4 +29,40 @@ This problem is referred to as <b>probability density estimation, or simply dens
      seamless="seamless"
      frameborder="0">
 </iframe>
+<br>
+
+Reviewing a histogram of a data sample with a range of different numbers of bins will help to identify whether the density looks like a common probability distribution / normal distribution or not<br>
+<br>
+In most cases, you will see a unimodal distribution, such as the familiar bell shape of the normal, the flat shape of the uniform, or the descending or ascending shape of an exponential or Pareto distribution<br>
+<br>
+You might also see complex distributions, such as multiple peaks, with different numbers of bins, referred to as a **bimodal distribution**, or multiple peaks, referred to as a **multimodal distribution**. You might also see a large spike in density for a given value or small range of values indicating outliers, often occurring on the tail of a distribution far away from the mean / center of the density<br>
+<br>
+
+## Parametric Density Estimation
+
+**Identify Distribution**
+<br><br>
+Get familiar with the common probability distributions as it will help you to identify a given distribution from a histogram<br>
+<br>
+Once identified, you can attempt to estimate the density of the random variable with a chosen probability distribution. This can be achieved by estimating the parameters of the distribution from a random sample of data<br>
+<br>
+For example, the normal distribution has two parameters:<br>
+
+* mean
+* standard deviation
+
+ Given these two parameters, we now know the probability distribution function. These parameters can be estimated from data by calculating the sample mean and sample standard deviation<br>
+ <br>
+ **We refer to this process as parametric density estimation**<br>
+ <br>
+ Once we have estimated the density, we can check if it is a good fit. This can be done in many ways, such as:<br>
+ <br>
+ * Plotting the density function and comparing the shape to the histogram
+ * Sampling the density function and comparing the generated sample to the real sample
+ * Using a statistical test to confirm the data fits the distribution
+<br>
+<br>
+
+We can generate a random sample of 1000 observations from a normal distribution with a mean of 50 and standard deviation of 5:
+
 

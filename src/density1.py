@@ -1,52 +1,59 @@
 # Density1.py
 
 from bokeh.plotting import figure, save, curdoc, output_file
+from bokeh.layouts import row
 import numpy as np
 import pandas as pd
+import data as dt
+calc = dt.Data()
 
-
-def make_data(N: int, loc: float = 0, scale: float = 2):
-    rng = np.random.default_rng(246810)
-    x = rng.normal(loc=loc, scale=scale, size=(N))
-
-    df_x = pd.Series(x)
-    min_val = df_x.min()
-    max_val = df_x.max()
-    x_bar = df_x.mean()
-    std = df_x.std()
-    new_data = {'min': min_val,
-                'max': max_val,
-                'mean': x_bar,
-                'std': std,
-                'data': df_x}
-    return new_data
-
+data = calc.make_data(N=2000, mu=0, sigma=3)
 
 curdoc().theme = 'dark_minimal'
 
-fig = figure(width=670,
-             height=400,
-             toolbar_location=None,
-             title="Probability Density Tutorial\n")
+fig1 = figure(width=450,
+              height=350,
+              toolbar_location=None,
+              title="Probability Density - 10 bins\n")
 
-data = make_data(1000, 0, 3)
 
-bin_count = 10
+bin_count1 = 10
 
-# Histogram
-bins = np.linspace(data['min'], data['max'], bin_count)
-hist, edges = np.histogram(data['data'], density=True, bins=bins)
+# Histogram1
+bins1 = np.linspace(data['min'], data['max'], bin_count1)
+hist1, edges = np.histogram(sorted(data['X']), density=True, bins=bins1)
 
-fig.quad(
-        top=hist,
+fig1.quad(
+        top=hist1,
         bottom=0,
         left=edges[:-1],
         right=edges[1:],
         fill_color="dodgerblue",
         alpha=0.5,
         line_color="white",
-        legend_label=f"{len(data['data'])} observatrions in {bin_count} bins")
+        legend_label=f"{bin_count1} bins")
+
+fig2 = figure(width=450,
+              height=350,
+              toolbar_location=None,
+              title="Probability Density - 2 bins\n")
+
+bin_count2 = 3
+
+# Histogram1
+print(f'MIN: {data["min"]}, MAX: {data["max"]}')
+bins2 = np.linspace(data['min'], data['max'], bin_count2)
+hist2, edges = np.histogram(sorted(data['X']), density=True, bins=bins2)
+fig2.quad(
+        top=hist2,
+        bottom=0,
+        left=edges[:-1],
+        right=edges[1:],
+        fill_color="dodgerblue",
+        alpha=0.5,
+        line_color="white",
+        legend_label=f"{bin_count2} bins")
 
 
 output_file("../docs/bokeh/density1.html")
-save(fig)
+save(row(fig1, fig2))
