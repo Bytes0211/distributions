@@ -7,7 +7,7 @@ import pandas as pd
 import data as dt
 calc = dt.Data()
 
-data = calc.make_data(N=2000, mu=0, sigma=3)
+data = calc.make_data(N=2000, mu=0, sigma=3, std_out=True)
 
 curdoc().theme = 'dark_minimal'
 
@@ -41,7 +41,6 @@ fig2 = figure(width=450,
 bin_count2 = 3
 
 # Histogram1
-print(f'MIN: {data["min"]}, MAX: {data["max"]}')
 bins2 = np.linspace(data['min'], data['max'], bin_count2)
 hist2, edges = np.histogram(sorted(data['X']), density=True, bins=bins2)
 fig2.quad(
@@ -54,6 +53,9 @@ fig2.quad(
         line_color="white",
         legend_label=f"{bin_count2} bins")
 
+with open('../docs/bokeh/density1-data.html', 'w') as write_file:
+    write_file.write(data['disp'])
 
 output_file("../docs/bokeh/density1.html")
 save(row(fig1, fig2))
+

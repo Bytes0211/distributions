@@ -2,7 +2,7 @@
 # data.py
 Data class contains functions to support statistical calculations
 """
-
+from IPython.display import display, Markdown, HTML
 from typing import Iterable, List, Dict, Tuple
 import numpy as np
 import pandas as pd 
@@ -10,7 +10,6 @@ import random
 from scipy.stats import norm, poisson, binom, t, chi2 
 from statsmodels import api 
 import copy 
-from IPython.display import display, Markdown, HTML 
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -118,15 +117,13 @@ class Data:
         else:
             err_msg = f'Invalid type for either x {len(x)}, rng {rng}, or seed {seed}'
             raise InvalidParamEntry(err_msg)
-
-    
     
     def get_random_array(self,
                          low: int | float,
                          high: int | float,
                          cnt: int = 1,
                          dtype: str = 'i',
-                         seed: int = 0)-> Iterable:
+                         seed: int = 0) -> Iterable:
         """
         Generate a random array of integers or floats
         
@@ -151,7 +148,11 @@ class Data:
         -------
         Rand
         """
-        if all([isinstance(low, int | float), isinstance(high, int | float), isinstance(cnt, int ), isinstance(dtype, str), isinstance(seed, int)]):
+        if all([isinstance(low, int | float),
+                isinstance(high, int | float),
+                isinstance(cnt, int),
+                isinstance(dtype, str),
+                isinstance(seed, int)]):
             if seed > 0:
                 np.random.seed(seed)
             if dtype.lower() == 'f': 
@@ -162,7 +163,7 @@ class Data:
             err_msg = "lwo, high, cnt, dytype, or seed is wrong type"
             raise InvalidTypeError(err_msg)
         
-    def weigh_array(self, x_arr: Iterable, rng: Tuple, seed: int = 0)->Iterable:
+    def weigh_array(self, x_arr: Iterable, rng: Tuple, seed: int = 0) -> Iterable:
         """\b
         add random weights to provided array based on provided tuple /
         with low and high ranges
@@ -187,11 +188,11 @@ class Data:
         """
         if seed > 0:
             random.seed(seed)
-        arr = [i +  random.randrange(rng[0], rng[1]) for i in x_arr]
+        arr = [i + random.randrange(rng[0], rng[1]) for i in x_arr]
         return arr
     
-    def get_chunks(self, chunks : List, size : int):
-        """\b
+    def get_chunks(self, chunks: List, size: int):
+        """
         split list into equal size lengths based on parameter size
         
         Parameters
@@ -265,7 +266,8 @@ class Data:
     def make_data(self, N: int = 0,
                   mu: int | float = 0,
                   sigma: int | float = 0,
-                  seed: int = 1012):
+                  seed: int = 1012,
+                  std_out: bool = False):  
         """
         create random normal ndarray using numpy.random.generator.integers() /
             and return as a ndarray
@@ -296,19 +298,27 @@ class Data:
                 isinstance(sigma, (float, int))]):
             import numpy as np
             rng = np.random.default_rng(seed)
-            dist = rng.normal(loc=mu, scale=sigma, size=(N))
-            x_arr = list(dist)
+            x_arr = rng.normal(loc=mu, scale=sigma, size=(N))
             min_val = np.min(x_arr)
             max_val = np.max(x_arr)
             mu = np.mean(x_arr)
             sigma = np.std(x_arr)
             cnt = len(x_arr)
-            if self.std_out == 'Y':
-                print(f'SAMPLE VALUES:\nsample count: {cnt} \
-                        \nmin: {round(min_val, 3)} \
-                        \nmax:{round(max_val, 3)} \
-                        \nmean: {round(mu, 3)} \
-                        \nstd: {round(sigma, 3)}')
+            if std_out:
+                disp = '<p>\r<b>X Central Tendencies</b>\r<ul>\r&emsp;&emsp;&emsp;'
+                disp = disp + '<li>Count: ' + f'{cnt}' + '</li>\r&emsp;&emsp;&emsp;'
+                disp = disp + '<li>Min: ' + f'{round(min_val, 3)}' + '</li>\r&emsp;&emsp;&emsp;'
+                disp = disp + '<li>Max: ' + f'{round(max_val, 3)}' + '</li>\r&emsp;&emsp;&emsp;'
+                disp = disp + '<li>' + 'mean: ' + f'{round(mu, 3)}' + '</li>\r&emsp;&emsp;&emsp;'
+                disp = disp + '<li>' + 'standard deviation: ' + f'{round(sigma, 3)} ' + \
+                    '</li>\r&emsp;&emsp;&emsp;'
+                disp = disp + '<li>' + '75 percentile: ' + f'{np.percentile(x_arr, 75): .3f} ' \
+                    + '</li>\r&emsp;&emsp;&emsp;'
+                disp = disp + '<li>' + '50 percentile: ' + f'{np.percentile(x_arr, 50): .3f} ' + \
+                    '</li>\r&emsp;&emsp;&emsp;'
+                disp = disp + '<li>' + '25 percentile: ' + f'{np.percentile(x_arr, 25): .3f} ' + \
+                    '</li>\r&emsp;&emsp;&emsp;'               
+                return dict(count=cnt, min=min_val, max=max_val, mu=mu, sigma=sigma, X=x_arr, disp=disp)
             return dict(count=cnt, min=min_val, max=max_val, mu=mu, sigma=sigma, X=x_arr)
         else:
             err_msg = 'Invalid Argument passed'
@@ -429,7 +439,8 @@ class Data:
         ======
             InvalidParamEntry
         """
-        # $\displaystyle f(x, \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \cdot \pi}} \cdot e^{\dfrac{-(x - \mu)^2}{2 \cdot \sigma^2}}$
+        # $\displaystyle f(x, \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \cdot \pi}} \cdot
+        # e^{\dfrac{-(x - \mu)^2}{2 \cdot \sigma^2}}$
         # f(x, \mu, \sigma) = (np.pi*sigma) * np.exp(-0.5*((x - mu)/sigma)**2)9+
         
         if all([isinstance(mu, int | float), isinstance(sigma, int | float)]): 
@@ -474,14 +485,14 @@ class Data:
                 (isinstance(upp, int | float)),
                 (isinstance(N, int))]):
             import numpy as np
-            x_arr = np.linspace(start=low, stop=upp, num = N )
+            x_arr = np.linspace(start=low, stop=upp, num=N)
             dist = norm.pdf(x_arr, self.mu, self.sigma)
             return dist
         else:
             err_msg = 'Invalid Argument passed'
             raise InvalidParamEntry(err_msg)           
     
-    def get_central_tendency(self, data_set: list):
+    def get_central_tendency(self, data_set: np.ndarray):
         """
         calculate the count, mean, standard deviation, minimum, and maximum
     
@@ -498,32 +509,35 @@ class Data:
         -------
         count minimum, maximum, mean, standard deviation of the data_set parameter
         """
-        if isinstance(data_set, list): 
-            import numpy as np 
-            # If data_set is larger than 250 split it in smaller arrays of 250 to manage memory consumption
-            if len(data_set) > 250:
-                chunk_list = []
-                for chunk in self.get_chunks(data_set, 2):
-                    chunk_list.append(chunk)
-                tup = tuple(chunk_list)
-                tup_set = np.vstack(tup)
-                cnt = len(tup_set)
-                mu = round(np.mean(tup_set), 4)
-                sigma = round(np.std(tup_set), 4)
-                min_val = np.min(tup_set)
-                max_val = np.max(tup_set)  
-            else:
-                cnt = len(data_set)
-                mu = round(np.mean(data_set), 4)
-                sigma = round(np.std(data_set), 4)
-                min_val = np.min(data_set)
-                max_val = np.max(data_set)
+        if isinstance(data_set, np.ndarray): 
+            cnt = len(data_set)
+            mu = round(np.mean(data_set), 4)
+            sigma = round(np.std(data_set), 4)
+            min_val = np.min(data_set)
+            max_val = np.max(data_set)
+            pct75 = np.percentile(data_set, 75)
+            pct50 = np.percentile(data_set, 50)
+            pct25 = np.percentile(data_set, 25)
             if self.std_out == 'Y':
-                print(f'count: {cnt}\n\nmin_val: {min_val} \
-                        \n\nmax_val: {max_val} \
-                        \n\nmu: {mu}\n\nsigma: {sigma}')
-                    
-            return cnt, mu, sigma, min_val, max_val
+                disp = '<b>Array Values</b><br><br>'
+                disp = disp + '- ' + f' count: {cnt} <br>'
+                disp = disp + '- ' + f' min:  {round(min_val, 3)} <br>'
+                disp = disp + '- ' + f' max: {round(max_val, 3)} <br>'
+                disp = disp + '- ' + r'$\mu$' + f': {round(mu, 3)}<br>'
+                disp = disp + '- ' + r'$\sigma$' + f': {round(sigma, 3)}<br>'
+                disp = disp + '- ' + f' 75th percentile: {round(pct75, 3): .3f}<br>'
+                disp = disp + '- ' + f' 50th percentile: {round(pct50, 3): .3f}<br>'
+                disp = disp + '- ' + f' 25th percentile: {round(pct25, 3): .3f}<br>'
+                return dict(count=cnt,
+                            mu=mu,
+                            sigma=sigma,
+                            min=min_val,
+                            max=max_val,
+                            pct75=pct75,
+                            pct50=pct50,
+                            pct25=pct25,
+                            disp=disp)
+            return dict(count=cnt, mu=mu, sigma=sigma, min=min_val, max=max_val, pct75=pct75, pct50=pct50, pct25=pct25)
         else:
             err_msg = 'Invalid Argument passed'
             raise InvalidParamEntry(err_msg)    
@@ -548,7 +562,7 @@ class Data:
         """
         if isinstance(data_set, list):
             import numpy as np 
-            uniq, freq = np.unique(data_set, return_counts = True)
+            uniq, freq = np.unique(data_set, return_counts=True)
             return freq, uniq 
         else:
             err_msg = 'Invalid Argument passed'
@@ -875,7 +889,7 @@ class Data:
             err_msg = 'Invalid Argument passed to get_mean()'
             raise InvalidParamEntry(err_msg)
 
-    def get_sigma(self, data_set : List)-> int | float:
+    def get_sigma(self, data_set: List) -> int | float:
         """
         calculate the standard deviation of the data_set parameter
      
@@ -901,7 +915,7 @@ class Data:
             # return sigma
             return np.std(data_set)
         else:
-            err_msg =  'Invalid Argument passed get_sigma'
+            err_msg = 'Invalid Argument passed get_sigma'
             raise InvalidParamEntry(err_msg)   
 
     def get_median(self, data_set: list):
@@ -1046,7 +1060,12 @@ class Data:
             err_msg = f'Invalid paramete type passed\nz type: {type(z)}, sigma type: {type(sigma)}, mu type: {type(mu)}'
             raise InvalidParamEntry(err_msg)
         
-    def get_x_axis_index(self, x: list = [], std_dev: int | float = 0, auc: float = 0, mu: int | float = 0, sigma: int | float = 0)-> int:
+    def get_x_axis_index(self,
+                         x: list = [],
+                         std_dev: int | float = 0,
+                         auc: float = 0,
+                         mu: int | float = 0,
+                         sigma: int | float = 0) -> int:
         """
         calculate the the index if std_dev, that resides within the list x
         1. first calculate the value of the standard deviation based on mu and sigma
