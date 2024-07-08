@@ -2,7 +2,7 @@
 # data.py
 Data class contains functions to support statistical calculations
 """
-from IPython.display import display, Markdown, HTML
+from IPython.display import display, Markdown, HTML, Math 
 from typing import Iterable, List, Dict, Tuple
 import numpy as np
 import pandas as pd 
@@ -1904,14 +1904,14 @@ class Data:
             err_msg = 'invalid paramter passed to get_z_score(mu, xbar, sigma, n)'
             raise InvalidParamEntry(err_msg)
         
-    def check_normality(self, x: list = []):
+    def check_normality(self, x: np.ndarray):
         """
         Use the emperical rule to check for the normalcy of a distribution as a list
         
         
         Parameters
         ----------
-        x: list
+        x: np.ndarray 
             mandatory- a list that represents a distribution
             
         Raises
@@ -1921,11 +1921,9 @@ class Data:
         Returns
         -------
         string in the form of IPython display
-        """             
-        if isinstance(x, list):
-            from IPython.display import display, Math 
-            import numpy as np
-            
+        """ 
+        import numpy as np 
+        if isinstance(x, np.ndarray):
             mu = np.mean(x)
             sigma = np.std(x)
             min_val = np.min(x)
@@ -1948,7 +1946,10 @@ class Data:
                     std_dev2_cnt += 1
                 if all([(val >= std_dev3[0]), (val <= std_dev3[1])]):
                     std_dev3_cnt += 1
-                    
+            msg = f'standard deviation 1: {std_dev1_cnt}\nstandard deviation \
+            2: {std_dev2_cnt}\nstandard deviation 3: {std_dev3_cnt}'
+            print(msg)
+            '''        
             msg = '\\displaystyle \\mu: %s\\\\\\sigma: %s\\\\'
             msg = msg + '\\text{minimum value: }%s\\\\\\text{maximum value: }%s\\\\~\\\\'
             msg = msg + '\\text{Emperical Rule:}\\\\~\\\\\\text{1 Standard Deviation from \
@@ -1982,6 +1983,7 @@ class Data:
                 f'{mu: .4f}', f'{sigma: .4f}', f'{std_dev3[0]: .4f}', f'{std_dev3[1]: .4f}',
                 f'{(std_dev3_cnt/len(x) * 100): .2f}'
             )))
+            '''
         else:
             err_msg = f'invalid paramter passedto check_normality(x) as type {type(x)}'
             raise InvalidParamEntry(err_msg)
