@@ -107,7 +107,7 @@ There are FOUR possible values for X for each trial:<br>
 
 The plot below shows the distribution of X. The x-axis represents the possible values of X (0, 1, 2, 3) and the y-axis represents the probability of each value occurring. The distribution is symmetric around the mean value of 1.5, with the highest probability of $0.375$ occurring at X = 1 and X = 2 and a value of $0.125$ at X = 0 and X =3. The distribution is discrete, as the random variable X can only take on integer values.<br>
 
-<iframe src="https://bytes0211.github.io/distributions/bokeh/dice_roll1.html"
+<iframe src="https://bytes0211.github.io/distributions/bokeh/dice-roll1.html"
     sandbox="allow-same-origin allow-scripts"
     width="500%"
     height="400"
