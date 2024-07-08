@@ -40,8 +40,7 @@ This problem is referred to as <b>probability density estimation, or simply dens
      seamless="seamless"
      frameborder="0">
 </iframe>
-</div>i
-
+</div>
 Reviewing a histogram of a data sample with a range of different numbers of bins will help to identify whether the density looks like a common probability distribution / normal distribution or not<br>
 <br>
 In most cases, you will see a unimodal distribution, such as the familiar bell shape of the normal, the flat shape of the uniform, or the descending or ascending shape of an exponential or Pareto distribution<br>
@@ -73,7 +72,6 @@ For example, the normal distribution has two parameters:<br>
  * Using a statistical test to confirm the data fits the distribution
 <br>
 <br>
-
 We can generate a random sample of 1000 observations from a normal distribution with a mean of 50 and standard deviation of 5:
 
 
