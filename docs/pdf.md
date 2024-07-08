@@ -21,6 +21,7 @@ The problem is, we may not know the probability distribution for a random variab
 This problem is referred to as <b>probability density estimation, or simply density estimation</b>, as we are using the observations in a random sample to estimate the general density of probabilities beyond just the sample of data we have available.<br><br>
 
 ## Density Visualization
+<div>
 <iframe src="https://bytes0211.github.io/distributions/bokeh/density1.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
@@ -29,7 +30,9 @@ This problem is referred to as <b>probability density estimation, or simply dens
      seamless="seamless"
      frameborder="0">
 </iframe>
-<iframe src="/https://bytes0211.github.io/distributions/bokeh/density1-data.html"
+</div>
+<div>
+<iframe src="https://bytes0211.github.io/distributions/bokeh/density1-data.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -37,6 +40,8 @@ This problem is referred to as <b>probability density estimation, or simply dens
      seamless="seamless"
      frameborder="0">
 </iframe>
+</div>i
+
 Reviewing a histogram of a data sample with a range of different numbers of bins will help to identify whether the density looks like a common probability distribution / normal distribution or not<br>
 <br>
 In most cases, you will see a unimodal distribution, such as the familiar bell shape of the normal, the flat shape of the uniform, or the descending or ascending shape of an exponential or Pareto distribution<br>
