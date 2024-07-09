@@ -1932,22 +1932,32 @@ class Data:
             std_dev1 = ((mu - sigma), (mu + sigma))
             std_dev2 = ((mu - (sigma * 2)), (mu + (sigma * 2)))
             std_dev3 = ((mu - (sigma * 3)), (mu + (sigma * 3)))
-
-            std_dev1_cnt = 0
-            std_dev2_cnt = 0
-            std_dev3_cnt = 0
+            print(f'std_dev1: {std_dev1}\nstd_dev2: {std_dev2}\nstd_dev3: {std_dev3}')    
+            std_dev1_cnt = []
+            std_dev2_cnt = []
+            std_dev3_cnt = []
 
             # emperical = [std_dev1, std_dev2, std_dev3]
 
             for val in x:
-                if all([(val >= std_dev1[0]), (val <= std_dev1[1])]):
-                    std_dev1_cnt += 1
-                if all([(val >= std_dev2[0]), (val <= std_dev2[1])]):
-                    std_dev2_cnt += 1
-                if all([(val >= std_dev3[0]), (val <= std_dev3[1])]):
-                    std_dev3_cnt += 1
-            msg = f'standard deviation 1: {std_dev1_cnt}\nstandard deviation \
-            2: {std_dev2_cnt}\nstandard deviation 3: {std_dev3_cnt}'
+                if val > mu:
+                    if val >= std_dev2[1]:
+                        std_dev3_cnt.append(val)
+                    elif val >= std_dev1[1]:
+                        std_dev2_cnt.append(val)
+                    else:
+                        std_dev1_cnt.append(val)
+                else:               
+                    if val < std_dev2[0]:
+                        std_dev3_cnt.append(val)
+                    elif val < std_dev1[0]:
+                        std_dev2_cnt.append(val)
+                    else:    
+                        std_dev1_cnt.append(val)
+            msg = f'mu ={mu}\nsigma = {sigma}\nmin = {min_val}\nmax = {max_val}\n\n'        
+            msg = msg + f'standard deviation 1: {len(std_dev1_cnt)} ({(len(std_dev1_cnt)/len(x)) * 100} pct.)\n'
+            msg = msg + f'standard deviation 2: {len(std_dev2_cnt)} ({(len(std_dev2_cnt)/len(x)) * 100} pct.)\n'
+            msg = msg + f'standard deviation 3: {len(std_dev3_cnt)} ({(len(std_dev3_cnt)/len(x)) * 100} pct.)\n\n'
             print(msg)
             '''        
             msg = '\\displaystyle \\mu: %s\\\\\\sigma: %s\\\\'
