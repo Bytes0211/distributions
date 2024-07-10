@@ -22,7 +22,7 @@ This problem is referred to as <b>probability density estimation, or simply dens
 
 ## Density Visualization
 <div>
-<iframe src="https://bytes0211.github.io/distributions/bokeh/density1.html"
+<iframe src="/bokeh/density1.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"
@@ -32,7 +32,7 @@ This problem is referred to as <b>probability density estimation, or simply dens
 </iframe>
 </div>
 <div>
-<iframe src="https://bytes0211.github.io/distributions/bokeh/density1-data.html"
+<iframe src="/bokeh/density1-data.html"
      sandbox="allow-same-origin allow-scripts"
      width="500%"
      height="400"

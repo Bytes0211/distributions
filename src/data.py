@@ -36,6 +36,18 @@ class InvalidDictError(Exception):
     """Raised when invalid object passed as dictionary """
 
 
+@dataclass
+class Normality():
+    sigmaCnt1: list
+    sigmaCnt2: list
+    sigmaCnt3: list
+    sigmaPct1: float
+    sigmaPct2: float
+    sigmaPct3: float
+    normality: bool
+    msg: str
+
+
 class Data: 
     
     def __init__(self, N: int = 1,
@@ -763,7 +775,6 @@ class Data:
                         raise InvalidKeyError
             import math
             import numpy as np 
-            from IPython.display import display, Math 
             e = math.e 
             dis_e = round(math.e, 3)
             num = round((info["lambda"]**info["x"] * e**(-info["lambda"])), 3)
@@ -1931,72 +1942,58 @@ class Data:
             
             std_dev1 = ((mu - sigma), (mu + sigma))
             std_dev2 = ((mu - (sigma * 2)), (mu + (sigma * 2)))
-            std_dev3 = ((mu - (sigma * 3)), (mu + (sigma * 3)))
-            print(f'std_dev1: {std_dev1}\nstd_dev2: {std_dev2}\nstd_dev3: {std_dev3}')    
-            std_dev1_cnt = []
-            std_dev2_cnt = []
-            std_dev3_cnt = []
+            # std_dev3 = ((mu - (sigma * 3)), (mu + (sigma * 3)))
+            std_dev1_cnt = 0 
+            std_dev2_cnt = 0
+            std_dev3_cnt = 0
 
             # emperical = [std_dev1, std_dev2, std_dev3]
 
             for val in x:
                 if val > mu:
                     if val >= std_dev2[1]:
-                        std_dev3_cnt.append(val)
+                        std_dev3_cnt += 1
                     elif val >= std_dev1[1]:
-                        std_dev2_cnt.append(val)
+                        std_dev2_cnt += 1
                     else:
-                        std_dev1_cnt.append(val)
+                        std_dev1_cnt += 1
                 else:               
                     if val < std_dev2[0]:
-                        std_dev3_cnt.append(val)
+                        std_dev3_cnt += 1
                     elif val < std_dev1[0]:
-                        std_dev2_cnt.append(val)
+                        std_dev2_cnt += 1
                     else:    
-                        std_dev1_cnt.append(val)
-            msg = f'mu ={mu}\nsigma = {sigma}\nmin = {min_val}\nmax = {max_val}\n\n'        
-            msg = msg + f'standard deviation 1: {len(std_dev1_cnt)} ({(len(std_dev1_cnt)/len(x)) * 100} pct.)\n'
-            msg = msg + f'standard deviation 2: {len(std_dev2_cnt)} ({(len(std_dev2_cnt)/len(x)) * 100} pct.)\n'
-            msg = msg + f'standard deviation 3: {len(std_dev3_cnt)} ({(len(std_dev3_cnt)/len(x)) * 100} pct.)\n\n'
-            print(msg)
-            '''        
-            msg = '\\displaystyle \\mu: %s\\\\\\sigma: %s\\\\'
-            msg = msg + '\\text{minimum value: }%s\\\\\\text{maximum value: }%s\\\\~\\\\'
-            msg = msg + '\\text{Emperical Rule:}\\\\~\\\\\\text{1 Standard Deviation from \
-                    mean: 68 percent of distribution}\\\\~\\\\'
-            msg = msg + '\\qquad \\star~ %s \\pm %s \\Rightarrow (%s, %s)\\\\~\\\\'
-            msg = msg + '\\qquad \\star~ %s \\text{ pct of the data resides within 1 standard deviation}\\\\~\\\\'
+                        std_dev1_cnt += 1
+            std_dev1_pct = round((std_dev1_cnt/len(x) * 100), 3)            
+            std_dev2_pct = std_dev1_pct + round((std_dev2_cnt/len(x) * 100), 3)
+            std_dev3_pct = std_dev2_pct + round((std_dev3_cnt/len(x) * 100), 3)
+                         
+            msg = f'mu = {mu}\nsigma = {sigma}\nmin = {min_val}\nmax = {max_val}\n\n'        
+            msg += f'standard deviation 1:\n\tcount: {std_dev1_cnt}\n\tpct: {std_dev1_pct}'
+            msg += '\n\tnormal: 68%\n\n'
+            msg += f'standard deviation 2:\n\tcount: {std_dev2_cnt}\n\tpct: {std_dev2_pct}'
+            msg += '\n\tnormal: 95%\n\n'
+            msg += f'standard deviation 3:\n\tcount: {std_dev3_cnt}\n\tpct: {std_dev3_pct}'
+            msg += '\n\tnormal: 99.7%\n\n'
+            if all([std_dev1_pct >= 68, std_dev2_pct >= 95, std_dev3_pct >= 99.7]):
+                normality = True
+                msg = msg + 'The distribution is normal'
+            else:
+                normality = False
+                msg = msg + 'The distribution is not normal'
             
-            msg = msg + '\\text{2 Standard Deviation: 95 percent of distribution}\\\\~\\\\'
-            msg = msg + '\\qquad \\star~ %s \\pm 2 \\cdot %s \\Rightarrow (%s, %s)\\\\~\\\\'
-            msg = msg + '\\qquad \\star~ %s \\text{ pct of the data resides within 2 standard deviation}\\\\~\\\\'
-            msg = msg + '\\text{3 Standard Deviation: 95 percent of distribution}\\\\~\\\\'
-            msg = msg + '\\qquad \\star~ %s \\pm 3 \\cdot %s \\Rightarrow (%s, %s)\\\\~\\\\'
-            msg = msg + '\\qquad \\star~ %s \\text{ pct of the data resides within 3 standard deviation}\\\\~\\\\'
-            msg = msg + '\\color{gainsboro} \\text{If each standard deviation is within 5 \
-                    percent of the emperical rule then }'
-            msg = msg + '\\text{you can consider the distribution normal}'
-            
-            display(Math(msg % (
-                f'{mu: .4f}',
-                f'{sigma: .4f}',
-                min_val,
-                max_val, 
-                f'{mu: .4f}',
-                f'{sigma: .4f}',
-                f'{std_dev1[0]: .4f}',
-                f'{std_dev1[1]: .4f}',
-                f'{(std_dev1_cnt/len(x) * 100): .2f}',
-                f'{mu: .4f}',
-                f'{sigma: .4f}', f'{std_dev2[0]: .4f}', f'{std_dev2[1]: .4f}',
-                f'{(std_dev2_cnt/len(x) * 100): .2f}',
-                f'{mu: .4f}', f'{sigma: .4f}', f'{std_dev3[0]: .4f}', f'{std_dev3[1]: .4f}',
-                f'{(std_dev3_cnt/len(x) * 100): .2f}'
-            )))
-            '''
-        else:
-            err_msg = f'invalid paramter passedto check_normality(x) as type {type(x)}'
-            raise InvalidParamEntry(err_msg)
+            norm = Normality(
+                sigmaCnt1=std_dev1_cnt,
+                sigmaCnt2=std_dev2_cnt,
+                sigmaCnt3=std_dev3_cnt,
+                sigmaPct1=std_dev1_pct,
+                sigmaPct2=std_dev2_pct, 
+                sigmaPct3=std_dev3_pct,
+                normality=normality,
+                msg=msg
+                )
+
+        return norm  
         
     def case_against_null(self, p_value: int | float = 0):
         """
